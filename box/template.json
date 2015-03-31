@@ -1,0 +1,49 @@
+{
+  "builders": [{
+    "name": "virtualbox",
+    "type": "virtualbox-iso",
+    "vm_name": "rancheros-lite-packer",
+    "iso_interface": "sata",
+    "iso_url": "../rancheros-lite.iso",
+    "iso_checksum_type": "none",
+    "boot_wait": "5s",
+    "ssh_username": "rancher",
+    "ssh_key_path": "/Users/ailis/.vagrant.d/insecure_private_key",
+    "shutdown_command": "sudo poweroff -f",
+    "guest_additions_mode": "disable",
+    "guest_os_type": "Linux26_64",
+    "disk_size": 40960,
+    "hard_drive_interface": "sata",
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "1024", "--rtcuseutc", "on", "--pae", "off"],
+      ["modifyvm", "{{.Name}}", "--boot1", "dvd", "--boot2", "disk"],
+      ["modifyvm", "{{.Name}}", "--nictype1", "virtio"],
+      ["modifyvm", "{{.Name}}", "--nictype2", "virtio"],
+      ["modifyvm", "{{.Name}}", "--nictype3", "virtio"],
+      ["modifyvm", "{{.Name}}", "--nictype4", "virtio"],
+      ["modifyvm", "{{.Name}}", "--nictype5", "virtio"],
+      ["modifyvm", "{{.Name}}", "--nictype6", "virtio"],
+      ["modifyvm", "{{.Name}}", "--nictype7", "virtio"],
+      ["modifyvm", "{{.Name}}", "--nictype8", "virtio"],
+      ["storagectl", "{{.Name}}", "--name", "SATA Controller", "--portcount", "2"]
+    ]
+  }],
+
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "(echo n; echo p; echo 2; echo ; echo +1000M ; echo w;) | sudo fdisk /dev/sda",
+      "(echo t; echo 82; echo w;) | sudo fdisk /dev/sda",
+      "sudo mkswap -L RANCHEROS-SWAP /dev/sda2",
+      "(echo n; echo p; echo 1; echo ; echo ; echo w;) | sudo fdisk /dev/sda",
+      "sudo mkfs.ext4 -F -L RANCHEROS-DATA /dev/sda1"
+    ]
+  }],
+
+  "post-processors": [{
+    "type": "vagrant",
+    "include": ["../rancheros-lite.iso", "vagrant_plugin_guest_busybox.rb"],
+    "vagrantfile_template": "vagrantfile.tpl",
+    "output": "../rancheros-lite.box"
+  }]
+}

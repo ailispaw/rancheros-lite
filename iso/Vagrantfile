@@ -1,0 +1,33 @@
+Vagrant.configure(2) do |config|
+  config.vm.define "rancheros-lite-iso"
+
+  config.vm.box = "yungsang/boot2docker"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "rancheros-lite-iso"
+    vb.memory = 1024
+  end
+
+  config.vm.network :forwarded_port, guest: 2375, host: 2375, disabled: true
+
+  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.synced_folder "..", "/vagrant", type: "nfs"
+
+  if Vagrant.has_plugin?("vagrant-triggers") then
+    config.trigger.after [:up, :resume] do
+      info "Adjusting datetime after suspend and resume."
+      run_remote "timeout -t 10 sudo /usr/local/bin/ntpclient -s -h pool.ntp.org; date"
+    end
+  end
+
+  # Adjusting datetime before provisioning.
+  config.vm.provision :shell, run: "always" do |sh|
+    sh.inline = "timeout -t 10 sudo /usr/local/bin/ntpclient -s -h pool.ntp.org; date"
+  end
+
+  config.vm.provision :docker do |docker|
+    docker.build_image "/vagrant/iso/", args: "-t rancheros-lite"
+    docker.run "rancheros-lite", args: "--rm", cmd: "> /vagrant/rancheros-lite.iso",
+      auto_assign_name: false, daemonize: false
+  end
+end
