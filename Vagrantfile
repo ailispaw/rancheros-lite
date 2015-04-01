@@ -1,16 +1,16 @@
 Vagrant.configure(2) do |config|
-  config.vm.define "rancheros-lite"
+  config.vm.define "rancheros-lite-test"
 
   config.vm.box = "rancheros-lite"
 
-  config.vm.hostname = "rancheros-lite"
+  config.vm.hostname = "rancheros-lite-test.example.com"
 
   config.vm.network "private_network", ip: "192.168.33.10"
 
   config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
 
   config.vm.provider :virtualbox do |vb|
-    vb.name = "rancheros-lite"
+    vb.name = "rancheros-lite-test"
     vb.gui = true
   end
 

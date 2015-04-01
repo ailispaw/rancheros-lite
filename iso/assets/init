@@ -93,6 +93,11 @@ logger -s -p user.info -t "init[$$]" "Configuring Network"
 echo "rancheros-lite" > /etc/hostname
 hostname -F /etc/hostname
 
+cat <<EOF > /etc/hosts
+127.0.0.1 localhost
+127.0.1.1 $(hostname)
+EOF
+
 cat <<EOF > /etc/resolv.conf
 nameserver 8.8.8.8
 nameserver 8.8.4.4
@@ -126,7 +131,7 @@ if [ -x /var/lib/rancheros-lite/start.sh ]; then
 fi
 
 sync
-sleep 5
+sleep 3
 
 logger -s -p user.info -t "init[$$]" "Starting console"
 openvt -s -l bash

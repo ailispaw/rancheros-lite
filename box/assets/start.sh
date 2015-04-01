@@ -1,6 +1,6 @@
 #!/bin/sh
 
-logger -s -p user.info -t "init[$$]" "Configuring for Vagrant"
+logger -s -p user.info -t "start.sh[$$]" "Configuring for Vagrant"
 mkdir -p /home/rancher
 if [ ! -d /var/lib/rancheros-lite/rancher ]; then
   mv /home/rancher /var/lib/rancheros-lite/rancher
