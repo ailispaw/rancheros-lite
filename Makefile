@@ -12,7 +12,7 @@ box: $(BOX_NAME)
 iso: $(ISO_NAME)
 
 $(BOX_NAME): $(ISO_NAME) box/template.json box/vagrantfile.tpl \
-	box/vagrant_plugin_guest_busybox.rb
+	box/vagrant_plugin_guest_busybox.rb box/assets/profile box/assets/start.sh
 	cd box && \
 		$(PACKER) build template.json
 

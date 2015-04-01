@@ -8,7 +8,7 @@
     "iso_checksum_type": "none",
     "boot_wait": "5s",
     "ssh_username": "rancher",
-    "ssh_key_path": "/Users/ailis/.vagrant.d/insecure_private_key",
+    "ssh_password": "rancher",
     "shutdown_command": "sudo poweroff -f",
     "guest_additions_mode": "disable",
     "guest_os_type": "Linux26_64",
@@ -36,7 +36,22 @@
       "(echo t; echo 82; echo w;) | sudo fdisk /dev/sda",
       "sudo mkswap -L RANCHEROS-SWAP /dev/sda2",
       "(echo n; echo p; echo 1; echo ; echo ; echo w;) | sudo fdisk /dev/sda",
-      "sudo mkfs.ext4 -F -L RANCHEROS-DATA /dev/sda1"
+      "sudo mkfs.ext4 -F -L RANCHEROS-DATA /dev/sda1",
+
+      "sudo mkdir -p /mnt/sda1",
+      "sudo mount -t ext4 /dev/sda1 /mnt/sda1",
+      "sudo mkdir -p /mnt/sda1/var/lib/rancheros-lite"
+    ]
+  }, {
+    "type": "file",
+    "source": "assets/",
+    "destination": "/tmp"
+  }, {
+    "type": "shell",
+    "inline": [
+      "sudo cp /tmp/profile /mnt/sda1/var/lib/rancheros-lite/",
+      "sudo cp /tmp/start.sh /mnt/sda1/var/lib/rancheros-lite/",
+      "sudo chmod +x /mnt/sda1/var/lib/rancheros-lite/start.sh"
     ]
   }],
 
