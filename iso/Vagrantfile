@@ -1,28 +1,40 @@
+module VagrantPlugins
+  module GuestLinux
+    class Plugin < Vagrant.plugin("2")
+      guest_capability("linux", "change_host_name") do
+        Cap::ChangeHostName
+      end
+
+      guest_capability("linux", "configure_networks") do
+        Cap::ConfigureNetworks
+      end
+    end
+  end
+end
+
 Vagrant.configure(2) do |config|
   config.vm.define "rancheros-lite-iso"
 
-  config.vm.box = "yungsang/boot2docker"
+  config.vm.box = "ailispaw/rancheros-lite"
 
-  config.vm.provider :virtualbox do |vb|
-    vb.name = "rancheros-lite-iso"
-    vb.memory = 1024
-  end
+  config.vm.hostname = "rancheros-lite-iso"
 
   config.vm.network :forwarded_port, guest: 2375, host: 2375, disabled: true
 
   config.vm.network "private_network", ip: "192.168.33.10"
-  config.vm.synced_folder "..", "/vagrant", type: "nfs"
+
+  config.vm.synced_folder "..", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
 
   if Vagrant.has_plugin?("vagrant-triggers") then
     config.trigger.after [:up, :resume] do
       info "Adjusting datetime after suspend and resume."
-      run_remote "timeout -t 10 sudo /usr/local/bin/ntpclient -s -h pool.ntp.org; date"
+      run_remote "sudo ntpd -n -q -g -I eth0 > /dev/null; date"
     end
   end
 
   # Adjusting datetime before provisioning.
   config.vm.provision :shell, run: "always" do |sh|
-    sh.inline = "timeout -t 10 sudo /usr/local/bin/ntpclient -s -h pool.ntp.org; date"
+    sh.inline = "sudo ntpd -n -q -g -I eth0 > /dev/null; date"
   end
 
   config.vm.provision :docker do |docker|
