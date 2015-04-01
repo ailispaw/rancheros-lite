@@ -19,7 +19,18 @@ $ cd rancheros-lite
 $ make
 ```
 
-## Vagrantfile
+## Vagrant up
+
+```
+$ vagrant box add ailispaw/rancheros-lite
+$ vagrant init ailispaw/rancheros-lite
+$ vagrant up
+```
+
+### Vagrantfile
+
+It needs the following module block to perform hostname and network configuration, ***only if there is not ailispaw/rancheros-lite locally***.  
+You had better download ailispaw/rancheros-lite first as above.
 
 ```
 module VagrantPlugins
