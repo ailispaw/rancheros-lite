@@ -29,3 +29,11 @@ fi
 if ! grep -q "^UseDNS no" /etc/ssh/sshd_config; then
   echo "UseDNS no" >> /etc/ssh/sshd_config
 fi
+
+# Load the vboxsf module
+if ! lsmod | grep -q vboxguest; then
+  modprobe vboxguest 2>/dev/null || true
+fi
+if ! lsmod | grep -q vboxsf; then
+  modprobe vboxsf 2>/dev/null || true
+fi

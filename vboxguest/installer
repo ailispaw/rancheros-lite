@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if mountpoint -q /target; then
+  KERNEL_VERSION=$(uname -r)
+  echo "Installing objects to /target/lib/modules/"
+  mkdir -p /target/lib/modules
+  cp /vboxguest/amd64/src/vboxguest-${VBOX_VERSION}/*.ko /target/lib/modules/
+  echo "Installing mount.vboxsf to /target/sbin/"
+  mkdir -p /target/sbin
+  cp /vboxguest/amd64/lib/VBoxGuestAdditions/mount.vboxsf /target/sbin/
+else
+  echo "/target is not a mountpoint."
+  echo "You can re-run this container with -v /vagrant/iso/assets:/target"
+fi

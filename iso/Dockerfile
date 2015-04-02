@@ -6,6 +6,7 @@ RUN apt-get update && \
 
 WORKDIR /usr/src
 
+ENV KERNEL_VERSION 3.19.2
 COPY os-base.tar.xz /usr/src/
 RUN tar xJf os-base.tar.xz && \
     tar xf dist/kernel/linux-*.tar -C dist/kernel
@@ -26,6 +27,10 @@ RUN cd root/lib/modules && \
     rm -rf ./*/kernel/net/bluetooth/* && \
     rm -rf ./*/kernel/net/mac80211/* && \
     rm -rf ./*/kernel/net/wireless/*
+
+COPY assets/sbin/mount.vboxsf root/sbin/
+COPY assets/lib/modules/*.ko root/lib/modules/${KERNEL_VERSION}-rancher/
+RUN depmod -a -b /usr/src/root ${KERNEL_VERSION}-rancher
 
 # Start assembling root
 RUN tar xf dist/rootfs.tar -C root && \
