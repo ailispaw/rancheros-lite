@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
 
   # Adjusting datetime before provisioning.
   config.vm.provision :shell, run: "always" do |sh|
-    sh.inline = "sudo ntpd -n -q -g -I eth0 > /dev/null; date"
+    sh.inline = "ntpd -n -q -g -I eth0 > /dev/null; date"
   end
 
   config.vm.provision :docker do |d|

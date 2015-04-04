@@ -23,7 +23,7 @@ $ make
 
 ```
 $ vagrant box add ailispaw/rancheros-lite
-$ vagrant init ailispaw/rancheros-lite
+$ vagrant init -m ailispaw/rancheros-lite
 $ vagrant up
 ```
 
@@ -57,6 +57,8 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: "192.168.33.10"
 
   config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
+# Or for VirtualBox Shared Folder
+# config.vm.synced_folder ".", "/vagrant"
 
   if Vagrant.has_plugin?("vagrant-triggers") then
     config.trigger.after [:up, :resume] do
@@ -67,7 +69,7 @@ Vagrant.configure(2) do |config|
 
   # Adjusting datetime before provisioning.
   config.vm.provision :shell, run: "always" do |sh|
-    sh.inline = "sudo ntpd -n -q -g -I eth0 > /dev/null; date"
+    sh.inline = "ntpd -n -q -g -I eth0 > /dev/null; date"
   end
 
   config.vm.provision :docker do |d|
