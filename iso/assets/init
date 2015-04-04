@@ -151,7 +151,12 @@ if [ -z "$DOCKER_HOST" ]; then
   DOCKER_HOST="-H unix://"
 fi
 
-logger -s -p user.info -t "init[$$]" "Starting Docker -d -D -s $DOCKER_STORAGE -g \"$DOCKER_DIR\" $DOCKER_HOST $DOCKER_EXTRA_ARGS"
+if ! lsmod | grep -q br_netfilter; then
+  modprobe br_netfilter 2>/dev/null || true
+fi
+
 # Top secret option...
 export DOCKER_RAMDISK=true
+
+logger -s -p user.info -t "init[$$]" "Starting Docker -d -D -s $DOCKER_STORAGE -g \"$DOCKER_DIR\" $DOCKER_HOST $DOCKER_EXTRA_ARGS"
 exec docker -d -D -s $DOCKER_STORAGE -g "$DOCKER_DIR" $DOCKER_HOST $DOCKER_EXTRA_ARGS
