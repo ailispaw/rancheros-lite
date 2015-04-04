@@ -105,7 +105,7 @@ options single-request-reopen
 EOF
 
 ifconfig lo 127.0.0.1
-udhcpc -i eth0
+dhcpcd eth0
 
 logger -s -p user.info -t "init[$$]" "Configuring SSH"
 mkdir -p /etc/ssh
