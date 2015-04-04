@@ -4,3 +4,8 @@
 *.xz
 *.iso
 *.box
+
+vboxguest/kernel-config
+
+iso/assets/lib/
+iso/assets/sbin/

@@ -41,7 +41,13 @@ Vagrant.configure(2) do |config|
     sh.inline = "sudo ntpd -n -q -g -I eth0 > /dev/null; date"
   end
 
-  config.vm.provision :docker do |docker|
+  config.vm.provision "vboxguest", type: "docker" do |docker|
+    docker.build_image "/vagrant/vboxguest/", args: "-t rancheros-lite-vbox"
+    docker.run "rancheros-lite-vbox", args: "--rm -v /vagrant/iso/assets:/target",
+      auto_assign_name: false, daemonize: false
+  end
+
+  config.vm.provision "rancheros" , type: "docker" do |docker|
     docker.build_image "/vagrant/iso/", args: "-t rancheros-lite"
     docker.run "rancheros-lite", args: "--rm", cmd: "> /vagrant/rancheros-lite.iso",
       auto_assign_name: false, daemonize: false
