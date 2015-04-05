@@ -91,7 +91,7 @@ clean:
 	$(RM) $(BOX_NAME)
 	$(RM) $(ISO_NAME)
 	$(RM) -r box/packer_cache
-	$(RM) vboxguest/.config
+	$(RM) vboxguest/kernel-config
 	$(RM) vboxguest/*.xz
 	$(RM) vboxguest/*.iso
 	$(RM) -r iso/assets/lib
