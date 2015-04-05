@@ -105,6 +105,7 @@ options single-request-reopen
 EOF
 
 ifconfig lo 127.0.0.1
+echo "noarp" >> /etc/dhcpcd.conf
 dhcpcd eth0
 
 logger -s -p user.info -t "init[$$]" "Configuring SSH"
