@@ -1,6 +1,6 @@
 #!/bin/sh
 
-logger -s -p user.info -t "start.sh[$$]" "Configuring for Vagrant"
+logger -s -p user.info -t "init.sh[$$]" "Configuring for Vagrant"
 mkdir -p /home/rancher
 if [ ! -d /var/lib/rancheros-lite/rancher ]; then
   mv /home/rancher /var/lib/rancheros-lite/rancher
@@ -36,4 +36,9 @@ if ! lsmod | grep -q vboxguest; then
 fi
 if ! lsmod | grep -q vboxsf; then
   modprobe vboxsf 2>/dev/null || true
+fi
+
+# Disable ARP probing at local network for speed up
+if ! grep -q "^noarp" /etc/dhcpcd.conf; then
+  echo "noarp" >> /etc/dhcpcd.conf
 fi

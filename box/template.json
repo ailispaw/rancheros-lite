@@ -50,8 +50,8 @@
     "type": "shell",
     "inline": [
       "sudo cp /tmp/profile /mnt/sda1/var/lib/rancheros-lite/",
-      "sudo cp /tmp/start.sh /mnt/sda1/var/lib/rancheros-lite/",
-      "sudo chmod +x /mnt/sda1/var/lib/rancheros-lite/start.sh"
+      "sudo cp /tmp/init.sh /mnt/sda1/var/lib/rancheros-lite/",
+      "sudo chmod +x /mnt/sda1/var/lib/rancheros-lite/init.sh"
     ]
   }],
 

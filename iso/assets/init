@@ -89,6 +89,11 @@ else
   fi
 fi
 
+if [ -x /var/lib/rancheros-lite/init.sh ]; then
+  logger -s -p user.info -t "init[$$]" "Executing custom configuration"
+  /var/lib/rancheros-lite/init.sh || true
+fi
+
 logger -s -p user.info -t "init[$$]" "Configuring Network"
 echo "rancheros-lite" > /etc/hostname
 hostname -F /etc/hostname
@@ -105,7 +110,6 @@ options single-request-reopen
 EOF
 
 ifconfig lo 127.0.0.1
-echo "noarp" >> /etc/dhcpcd.conf
 dhcpcd eth0
 
 logger -s -p user.info -t "init[$$]" "Configuring SSH"

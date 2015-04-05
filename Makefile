@@ -17,7 +17,8 @@ vbox: iso/assets/sbin/mount.vboxsf \
 	iso/assets/lib/modules/vboxguest.ko iso/assets/lib/modules/vboxsf.ko
 
 $(BOX_NAME): $(ISO_NAME) box/template.json box/vagrantfile.tpl \
-	box/vagrant_plugin_guest_busybox.rb box/assets/profile box/assets/start.sh
+	box/vagrant_plugin_guest_busybox.rb box/mount_virtualbox_shared_folder.rb \
+	box/assets/profile box/assets/init.sh
 	cd box && \
 		$(PACKER) build template.json
 
