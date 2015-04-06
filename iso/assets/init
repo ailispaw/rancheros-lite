@@ -136,10 +136,11 @@ if [ -x /var/lib/rancheros-lite/start.sh ]; then
 fi
 
 sync
-sleep 3
 
 logger -s -p user.info -t "init[$$]" "Starting console"
-openvt -s -l bash
+respawn /sbin/getty 115200 tty1 &
+respawn /sbin/getty 115200 tty2 &
+chvt 2
 
 if [ -f /var/lib/rancheros-lite/profile ]; then
   logger -s -p user.info -t "init[$$]" "Reloading /var/lib/rancheros-lite/profile"

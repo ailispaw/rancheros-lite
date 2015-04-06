@@ -61,6 +61,7 @@ RUN mkdir -p root/bin && \
     tar xvzf docker-$DOCKER_VERSION.tgz -C root/bin --strip-components=3
 
 COPY assets/init /usr/src/root/
+COPY assets/respawn /usr/src/root/usr/bin/
 
 ENV ISO /usr/src/rancheros-lite
 

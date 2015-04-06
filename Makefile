@@ -22,7 +22,7 @@ $(BOX_NAME): $(ISO_NAME) box/template.json box/vagrantfile.tpl \
 	cd box && \
 		$(PACKER) build template.json
 
-$(ISO_NAME): iso/Dockerfile iso/assets/init iso/assets/isolinux.cfg \
+$(ISO_NAME): iso/Dockerfile iso/assets/init iso/assets/respawn iso/assets/isolinux.cfg \
 	iso/os-base.tar.xz iso/docker-$(DOCKER_VERSION).tgz \
 	iso/assets/sbin/mount.vboxsf \
 	iso/assets/lib/modules/vboxguest.ko iso/assets/lib/modules/vboxsf.ko
