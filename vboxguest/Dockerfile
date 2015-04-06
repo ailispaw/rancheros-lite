@@ -4,12 +4,11 @@ RUN apt-get update && \
     apt-get -q -y install bc curl xz-utils build-essential p7zip-full && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV KERNEL_VERSION 3.19.2
+ENV KERNEL_VERSION 3.19.3
 COPY linux-${KERNEL_VERSION}.tar.xz /usr/src/
 RUN cd /usr/src && \
     tar xPJf linux-${KERNEL_VERSION}.tar.xz
 
-ENV RANCHEROS_BASE_VERSION 0.1.1
 COPY kernel-config /usr/src/linux-${KERNEL_VERSION}/.config
 RUN cd /usr/src/linux-${KERNEL_VERSION} && \
     make oldconfig && \
