@@ -45,9 +45,9 @@ echo 'rancher ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 # from https://github.com/rancherio/os/blob/master/scripts/dockerimages/scripts/console.sh
 RANCHER_HOME=/home/rancher
 if [ ! -d ${RANCHER_HOME} ]; then
-    mkdir -p ${RANCHER_HOME}
-    chown rancher:rancher ${RANCHER_HOME}
-    chmod 2755 ${RANCHER_HOME}
+  mkdir -p ${RANCHER_HOME}
+  chown rancher:rancher ${RANCHER_HOME}
+  chmod 2755 ${RANCHER_HOME}
 fi
 echo "rancher:rancher" | chpasswd
 
