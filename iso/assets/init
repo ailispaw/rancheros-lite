@@ -42,6 +42,16 @@ sed -i 's/rancher:!/rancher:*/g' /etc/shadow
 echo '## allow password less for rancher user' >> /etc/sudoers
 echo 'rancher ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
+VERSION=0.2.2
+cat > /etc/os-release << EOF
+NAME="RancherOS Lite"
+VERSION=$VERSION
+ID=rancheros
+ID_LIKE=busybox
+VERSION_ID=$VERSION
+PRETTY_NAME="RancherOS Lite v$VERSION"
+EOF
+
 # from https://github.com/rancherio/os/blob/master/scripts/dockerimages/scripts/console.sh
 RANCHER_HOME=/home/rancher
 if [ ! -d ${RANCHER_HOME} ]; then

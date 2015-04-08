@@ -1,5 +1,11 @@
 #!/bin/sh
 
+cat >> /etc/os-release << EOF
+HOME_URL="https://atlas.hashicorp.com/ailispaw/boxes/rancheros-lite"
+SUPPORT_URL="https://github.com/ailispaw/rancheros-lite"
+BUG_REPORT_URL="https://github.com/ailispaw/rancheros-lite/issues"
+EOF
+
 logger -s -p user.info -t "init.sh[$$]" "Configuring for Vagrant"
 mkdir -p /home/rancher
 if [ ! -d /var/lib/rancheros-lite/rancher ]; then
