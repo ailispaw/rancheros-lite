@@ -42,6 +42,11 @@ sed -i 's/rancher:!/rancher:*/g' /etc/shadow
 echo '## allow password less for rancher user' >> /etc/sudoers
 echo 'rancher ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
+# Set /opt/bin to $PATH
+mkdir -p /etc/profile.d
+echo "PATH=$PATH:/opt/bin" > /etc/profile.d/optbin.sh
+chmod +x /etc/profile.d/optbin.sh
+
 VERSION=0.2.2
 cat > /etc/os-release << EOF
 NAME="RancherOS Lite"
@@ -80,6 +85,10 @@ if [ -n "$DEVICE" ]; then
     rm -rf /var/lib/rancheros-lite
     mkdir -p /mnt/$PARTNAME/var/lib/rancheros-lite
     ln -s /mnt/$PARTNAME/var/lib/rancheros-lite /var/lib/rancheros-lite
+
+    rm -rf /opt
+    mkdir -p /mnt/$PARTNAME/opt
+    ln -s /mnt/$PARTNAME/opt /opt
   fi
 
   # from https://github.com/rancherio/os/blob/master/scripts/dockerimages/scripts/udev.sh
