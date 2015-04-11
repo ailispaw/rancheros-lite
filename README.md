@@ -3,6 +3,18 @@
 RancherOS Lite is a light version of [RancherOS](https://github.com/rancherio/os) as same as [Only Docker](https://github.com/ibuildthecloud/only-docker).  
 It has no system-docker containers unlike RancherOS, but it combines with them to form normal processes at the top of [RancherOS Base](https://github.com/rancherio/os-base). Therefore, it works like [boot2docker](https://github.com/boot2docker/boot2docker) and it's easy to use [Docker](https://github.com/docker/docker).
 
+## Features
+
+- Based on RancherOS Base with kernel v3.19.3 and buildroot/GLIBC
+- 40 GB persistent disk
+- Docker v1.5.0
+- Support NFS synced folder
+- Support VirtualBox Shared Folder
+- Support Docker provisioner
+- Disable TLS of Docker for simplicity
+- Expose and forward the official IANA registered Docker port 2375
+- 20 MB
+
 ## Packaging
 
 ### Requirements
