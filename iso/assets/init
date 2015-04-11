@@ -86,6 +86,13 @@ if [ -n "$DEVICE" ]; then
     mkdir -p /mnt/$PARTNAME/var/lib/rancheros-lite
     ln -s /mnt/$PARTNAME/var/lib/rancheros-lite /var/lib/rancheros-lite
 
+    if [ ! -d /mnt/$PARTNAME/home ]; then
+      mv /home /mnt/$PARTNAME/home
+    else
+      rm -rf /home
+    fi
+    ln -s /mnt/$PARTNAME/home /home
+
     rm -rf /opt
     mkdir -p /mnt/$PARTNAME/opt
     ln -s /mnt/$PARTNAME/opt /opt

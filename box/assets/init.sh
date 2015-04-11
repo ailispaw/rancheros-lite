@@ -7,14 +7,6 @@ BUG_REPORT_URL="https://github.com/ailispaw/rancheros-lite/issues"
 EOF
 
 logger -s -p user.info -t "init.sh[$$]" "Configuring for Vagrant"
-mkdir -p /home/rancher
-if [ ! -d /var/lib/rancheros-lite/rancher ]; then
-  mv /home/rancher /var/lib/rancheros-lite/rancher
-else
-  rm -rf /home/rancher
-fi
-ln -s /var/lib/rancheros-lite/rancher /home/rancher
-chown rancher:rancher /home/rancher
 mkdir -p /home/rancher/.ssh
 chmod 0700 /home/rancher/.ssh
 
