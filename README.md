@@ -29,36 +29,13 @@ $ vagrant up
 
 ### Vagrantfile
 
-It needs the following module block to perform hostname and network configuration, ***only if there is not ailispaw/rancheros-lite locally***.  
-You had better download ailispaw/rancheros-lite first as above.
-
 ```
-module VagrantPlugins
-  module GuestLinux
-    class Plugin < Vagrant.plugin("2")
-      guest_capability("linux", "change_host_name") do
-        Cap::ChangeHostName
-      end
-
-      guest_capability("linux", "configure_networks") do
-        Cap::ConfigureNetworks
-      end
-    end
-  end
-end
-
 Vagrant.configure(2) do |config|
   config.vm.define "rancheros-lite"
 
   config.vm.box = "ailispaw/rancheros-lite"
 
-  config.vm.hostname = "rancheros-lite"
-
-  config.vm.network "private_network", ip: "192.168.33.10"
-
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
-# Or for VirtualBox Shared Folder
-# config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder ".", "/vagrant"
 
   if Vagrant.has_plugin?("vagrant-triggers") then
     config.trigger.after [:up, :resume] do
