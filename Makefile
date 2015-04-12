@@ -76,6 +76,8 @@ test: boot_test
 	docker ps -a
 	@echo "-----> nc localhost 8080"
 	@nc localhost 8080
+	@echo "-----> /etc/os-release"
+	@$(VAGRANT) ssh -c "cat /etc/os-release" -- -T
 	@echo "-----> hostname"
 	@$(VAGRANT) ssh -c "hostname" -- -T
 	@echo "-----> route"
