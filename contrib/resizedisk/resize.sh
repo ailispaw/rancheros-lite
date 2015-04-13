@@ -5,7 +5,7 @@ RED="[38;5;1m"
 CLEAR="[39m"
 
 print_usage() {
-  echo "Usage: $(basename $0) [Vagrant Machine Name (config.vm.define?=default)] [Size in MB]"
+  echo "Usage: $(basename $0) [name(config.vm.define?=default)] [size in MB]"
   if [ -n "$1" ] ; then
     echo
     echo -e "${RED}$1${CLEAR}"
