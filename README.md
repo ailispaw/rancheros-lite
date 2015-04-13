@@ -13,6 +13,8 @@ It has no system-docker containers unlike RancherOS, but it combines with them t
 - Support Docker provisioner
 - Disable TLS of Docker for simplicity
 - Expose and forward the official IANA registered Docker port 2375
+- Support [resize the persistent disk](https://github.com/ailispaw/rancheros-lite/tree/master/contrib/resizedisk)
+- Support [upgrade and rollback](https://github.com/ailispaw/rancheros-lite/tree/master/contrib/upgrade)
 - 20 MB
 
 ## Packaging
@@ -41,7 +43,7 @@ $ vagrant up
 
 ### Vagrantfile
 
-```
+```ruby
 Vagrant.configure(2) do |config|
   config.vm.define "rancheros-lite"
 
