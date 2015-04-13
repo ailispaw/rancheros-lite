@@ -11,3 +11,5 @@ vboxguest/kernel-config
 
 iso/assets/lib/
 iso/assets/sbin/
+
+contrib/upgrade/index*
