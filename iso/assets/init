@@ -47,7 +47,7 @@ mkdir -p /etc/profile.d
 echo "PATH=$PATH:/opt/bin" > /etc/profile.d/optbin.sh
 chmod +x /etc/profile.d/optbin.sh
 
-VERSION=0.2.5
+VERSION=0.2.6
 cat > /etc/os-release << EOF
 NAME="RancherOS Lite"
 VERSION=$VERSION
