@@ -97,22 +97,11 @@ if [ -n "$DEVICE" ]; then
     mkdir -p /mnt/$PARTNAME/opt
     ln -s /mnt/$PARTNAME/opt /opt
   fi
-
-  # from https://github.com/rancherio/os/blob/master/scripts/dockerimages/scripts/udev.sh
-  udevd --daemon
-  udevadm trigger --action=add
-  udevadm settle
 fi
 DEVICE=$(blkid | grep -e 'LABEL="RANCHEROS-SWAP"' | head -n 1 | sed 's/:.*//')
 if [ -n "$DEVICE" ]; then
   logger -s -p user.info -t "init[$$]" "Enable SWAP $DEVICE"
   swapon $DEVICE
-else
-  DEVICE=$(ls -l /dev/disk/by-label | grep -e RANCHEROS-SWAP | head -n 1 | cut -f 3 -d '/')
-  if [ -n "$DEVICE" ]; then
-    logger -s -p user.info -t "init[$$]" "Enable SWAP /dev/$DEVICE"
-    swapon /dev/$DEVICE
-  fi
 fi
 
 if [ -x /var/lib/rancheros-lite/init.sh ]; then
