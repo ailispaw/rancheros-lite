@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
     d.pull_images "busybox"
     d.run "simple-echo",
       image: "busybox",
-      args: "-p 8080:8080",
+      args: "-p 8080:8080 --restart=always",
       cmd: "nc -p 8080 -l -l -e echo hello world!"
   end
 
