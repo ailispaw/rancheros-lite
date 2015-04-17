@@ -1,23 +1,3 @@
-# BusyBox has poweroff command.
-require Vagrant.source_root.join("plugins/guests/linux/cap/halt.rb")
-module VagrantPlugins
-  module GuestLinux
-    module Cap
-      class Halt
-        def self.halt(machine)
-          begin
-            machine.communicate.sudo("docker stop $(docker ps -q) || true")
-            machine.communicate.sudo("poweroff -f")
-          rescue IOError
-            # Do nothing, because it probably means the machine shut down
-            # and SSH connection was lost.
-          end
-        end
-      end
-    end
-  end
-end
-
 # Add change_host_name guest capability
 module VagrantPlugins
   module GuestLinux

@@ -62,6 +62,7 @@ RUN mkdir -p root/bin && \
 
 COPY assets/init /usr/src/root/
 COPY assets/respawn /usr/src/root/usr/bin/
+COPY assets/shutdown /usr/src/root/sbin/
 
 ENV ISO /usr/src/rancheros-lite
 

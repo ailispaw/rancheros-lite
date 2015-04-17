@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+CONTAINERS="$(docker ps -q)"
+CONTAINERS=$(echo ${CONTAINERS})
+if [ -n "${CONTAINERS}" ]; then
+  logger -s -p user.info -t "shutdown[$$]" "Stopping containers"
+  docker stop -t 2 "${CONTAINERS}"
+fi
+
+logger -s -p user.info -t "shutdown[$$]" "Powering off"
+poweroff -f
