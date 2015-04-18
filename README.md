@@ -54,13 +54,13 @@ Vagrant.configure(2) do |config|
   if Vagrant.has_plugin?("vagrant-triggers") then
     config.trigger.after [:up, :resume] do
       info "Adjusting datetime after suspend and resume."
-      run_remote "sudo ntpd -n -q -g -I eth0 > /dev/null; date"
+      run_remote "sudo sntp -4sSc pool.ntp.org"
     end
   end
 
   # Adjusting datetime before provisioning.
   config.vm.provision :shell, run: "always" do |sh|
-    sh.inline = "ntpd -n -q -g -I eth0 > /dev/null; date"
+    sh.inline = "sntp -4sSc pool.ntp.org"
   end
 
   config.vm.provision :docker do |d|

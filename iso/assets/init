@@ -47,6 +47,10 @@ mkdir -p /etc/profile.d
 echo "PATH=$PATH:/opt/bin" > /etc/profile.d/optbin.sh
 chmod +x /etc/profile.d/optbin.sh
 
+# Create /var/db/ntp-kod for sntp
+mkdir -p /var/db
+touch /var/db/ntp-kod
+
 VERSION=0.3.1
 cat > /etc/os-release << EOF
 NAME="RancherOS Lite"
