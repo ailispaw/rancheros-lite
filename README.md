@@ -5,7 +5,7 @@ It has no system-docker containers unlike RancherOS, but it combines with them t
 
 ## Features
 
-- Based on RancherOS Base with kernel v3.19.3 and buildroot/GLIBC
+- Based on RancherOS Base with kernel v3.19.4 and buildroot/GLIBC
 - 40 GB persistent disk
 - Docker v1.5.0
 - Support NFS synced folder
@@ -67,7 +67,7 @@ Vagrant.configure(2) do |config|
     d.pull_images "busybox"
     d.run "simple-echo",
       image: "busybox",
-      args: "-p 8080:8080",
+      args: "-p 8080:8080 --restart=always",
       cmd: "nc -p 8080 -l -l -e echo hello world!"
   end
 
