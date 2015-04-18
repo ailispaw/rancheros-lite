@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.1
+FROM ubuntu:14.04.2
 
 RUN apt-get update && \
     apt-get -q -y install bc xz-utils ca-certificates syslinux xorriso && \
