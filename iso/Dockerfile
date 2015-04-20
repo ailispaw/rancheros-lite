@@ -6,7 +6,7 @@ RUN apt-get update && \
 
 WORKDIR /usr/src
 
-ENV KERNEL_VERSION 3.19.4
+ENV KERNEL_VERSION 3.19.5
 COPY os-base.tar.xz /usr/src/
 RUN tar xJf os-base.tar.xz && \
     tar xf dist/kernel/linux-*.tar -C dist/kernel
