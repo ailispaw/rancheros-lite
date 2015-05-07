@@ -4,9 +4,9 @@ ISO_NAME := rancheros-lite.iso
 PACKER  := packer
 VAGRANT := vagrant
 
-RANCHEROS_BASE_VERSION := 0.3.4
+RANCHEROS_BASE_VERSION := 0.3.5
 DOCKER_VERSION         := 1.6.0
-KERNEL_VERSION         := 3.19.6
+KERNEL_VERSION         := 3.19.7
 VBOX_VERSION           := 4.3.26
 
 box: $(BOX_NAME)
