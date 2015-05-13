@@ -15,7 +15,7 @@ RUN cd /usr/src/linux-${KERNEL_VERSION} && \
     make prepare && make scripts && \
     make headers_install INSTALL_HDR_PATH=/usr/src
 
-ENV VBOX_VERSION 4.3.26
+ENV VBOX_VERSION 4.3.28
 RUN mkdir -p /vboxguest
 COPY vboxguest.iso /vboxguest/
 RUN cd /vboxguest && \
