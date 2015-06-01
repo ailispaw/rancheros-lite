@@ -4,9 +4,9 @@ ISO_NAME := rancheros-lite.iso
 PACKER  := packer
 VAGRANT := vagrant
 
-RANCHEROS_BASE_VERSION := 0.3.6
+RANCHEROS_BASE_VERSION := 0.4.0
 DOCKER_VERSION         := 1.6.2
-KERNEL_VERSION         := 3.19.8
+KERNEL_VERSION         := 4.0.4
 VBOX_VERSION           := 4.3.28
 
 box: $(BOX_NAME)
@@ -51,7 +51,7 @@ iso/assets/lib/modules/vboxsf.ko: vboxguest/Dockerfile vboxguest/installer \
 		$(VAGRANT) suspend
 
 vboxguest/linux-$(KERNEL_VERSION).tar.xz:
-	curl -L https://www.kernel.org/pub/linux/kernel/v3.x/linux-$(KERNEL_VERSION).tar.xz -o vboxguest/linux-$(KERNEL_VERSION).tar.xz
+	curl -L https://www.kernel.org/pub/linux/kernel/v4.x/linux-$(KERNEL_VERSION).tar.xz -o vboxguest/linux-$(KERNEL_VERSION).tar.xz
 
 vboxguest/kernel-config:
 	curl -L https://raw.githubusercontent.com/ailispaw/os-base/lite/v$(RANCHEROS_BASE_VERSION)/config/kernel-config -o vboxguest/kernel-config
