@@ -157,8 +157,9 @@ fi
 sync
 
 logger -s -p user.info -t "init[$$]" "Starting console"
+respawn /sbin/getty 115200 tty0 &
 respawn /sbin/getty 115200 tty1 &
-respawn /sbin/getty 115200 tty2 &
+respawn /sbin/getty 115200 ttyS0 &
 chvt 2
 
 if [ -f /var/lib/rancheros-lite/profile ]; then
