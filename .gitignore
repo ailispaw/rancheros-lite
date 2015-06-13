@@ -13,3 +13,9 @@ iso/assets/lib/
 iso/assets/sbin/
 
 contrib/upgrade/index*
+
+contrib/xhyve/initrd
+contrib/xhyve/vmlinuz
+contrib/xhyve/rancheros-lite-packer-disk1.*
+contrib/xhyve/insecure_private_key
+contrib/xhyve/initrd
