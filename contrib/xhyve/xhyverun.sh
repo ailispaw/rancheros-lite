@@ -7,7 +7,7 @@ CMDLINE="earlyprintk=serial console=ttyS0 acpi=off console=tty0 quiet elevator=n
 
 MEM="-m 1G"
 #SMP="-c 2"
-NET="-s 2:0,virtio-net,en0"
+NET="-s 2:0,virtio-net"
 IMG_CD="-s 3,ahci-cd,rancheros-lite.iso"
 IMG_HDD="-s 4,virtio-blk,rancheros-lite-packer-disk1.raw"
 PCI_DEV="-s 0:0,hostbridge -s 31,lpc"

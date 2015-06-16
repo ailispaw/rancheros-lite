@@ -6,7 +6,7 @@ initrd vmlinuz: rancheros-lite.iso
 	hdiutil unmount /Volumes/RANCHEROS_LITE
 
 rancheros-lite-packer-disk1.raw: rancheros-lite-packer-disk1.vmdk
-	$(RM) -f rancheros-lite-packer-disk1.raw
+	$(RM) rancheros-lite-packer-disk1.raw
 	VBoxManage clonehd -format RAW rancheros-lite-packer-disk1.vmdk rancheros-lite-packer-disk1.raw
 
 rancheros-lite.iso rancheros-lite-packer-disk1.vmdk:
