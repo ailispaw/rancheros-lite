@@ -39,16 +39,16 @@ GID = $(shell id -g)
 USERS = /Users -network 192.168.64.0 -mask 255.255.255.0 -alldirs -mapall=$(UID):$(GID)
 
 exports:
-		@sudo touch /etc/exports
-		@if ! grep -qs '^$(USERS)$$' /etc/exports; \
-		then \
-				echo '$(USERS)' | sudo tee -a /etc/exports; \
-		fi;
-		sudo nfsd restart
+	@sudo touch /etc/exports
+	@if ! grep -qs '^$(USERS)$$' /etc/exports; \
+	then \
+		echo '$(USERS)' | sudo tee -a /etc/exports; \
+	fi;
+	sudo nfsd restart
 
 exports-clean:
-		@sudo touch /etc/exports
-		sudo sed -E -e '/^\$(USERS)$$/d' -i.bak /etc/exports
-		sudo nfsd restart
+	@sudo touch /etc/exports
+	sudo sed -E -e '/^\$(USERS)$$/d' -i.bak /etc/exports
+	sudo nfsd restart
 
 .PHONY: exports exports-clean
