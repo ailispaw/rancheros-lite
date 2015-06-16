@@ -1,4 +1,4 @@
-all: initrd vmlinuz rancheros-lite.iso rancheros-lite-packer-disk1.raw insecure_private_key
+all: initrd vmlinuz rancheros-lite.iso rancheros-lite-packer-disk1.raw insecure_private_key exports
 
 initrd vmlinuz: rancheros-lite.iso
 	hdiutil mount rancheros-lite.iso
@@ -10,14 +10,14 @@ rancheros-lite-packer-disk1.raw: rancheros-lite-packer-disk1.vmdk
 	VBoxManage clonehd -format RAW rancheros-lite-packer-disk1.vmdk rancheros-lite-packer-disk1.raw
 
 rancheros-lite.iso rancheros-lite-packer-disk1.vmdk:
-	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.5.0/$@
+	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.5.1/$@
 
 # VMDK from a box becomes a huge 40GB raw disk image.
 #rancheros-lite.iso rancheros-lite-packer-disk1.vmdk: rancheros-lite.box
 #	tar xmf rancheros-lite.box $@
 #
 #rancheros-lite.box:
-#	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.5.0/rancheros-lite.box
+#	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.5.1/rancheros-lite.box
 
 insecure_private_key:
 	curl -L https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant \
@@ -33,3 +33,22 @@ clean:
 #	$(RM) rancheros-lite.box
 
 .PHONY: all clean
+
+UID = $(shell id -u)
+GID = $(shell id -g)
+USERS = /Users -network 192.168.64.0 -mask 255.255.255.0 -alldirs -mapall=$(UID):$(GID)
+
+exports:
+		@sudo touch /etc/exports
+		@if ! grep -qs '^$(USERS)$$' /etc/exports; \
+		then \
+				echo '$(USERS)' | sudo tee -a /etc/exports; \
+		fi;
+		sudo nfsd restart
+
+exports-clean:
+		@sudo touch /etc/exports
+		sudo sed -E -e '/^\$(USERS)$$/d' -i.bak /etc/exports
+		sudo nfsd restart
+
+.PHONY: exports exports-clean
