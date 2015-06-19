@@ -5,7 +5,7 @@ PACKER  := packer
 VAGRANT := vagrant
 
 RANCHEROS_BASE_VERSION := 0.4.1
-DOCKER_VERSION         := 1.6.2
+DOCKER_VERSION         := 1.7.0
 KERNEL_VERSION         := 4.0.5
 VBOX_VERSION           := 4.3.28
 

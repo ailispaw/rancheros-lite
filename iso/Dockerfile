@@ -55,7 +55,7 @@ RUN mkdir -p root/etc/ssl/certs && \
     cp /etc/ssl/certs/ca-certificates.crt root/etc/ssl/certs/
 
 # Install docker
-ENV DOCKER_VERSION 1.6.2
+ENV DOCKER_VERSION 1.7.0
 COPY docker-$DOCKER_VERSION.tgz /usr/src/
 RUN mkdir -p root/bin && \
     tar xvzf docker-$DOCKER_VERSION.tgz -C root/bin --strip-components=3
