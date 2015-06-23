@@ -10,14 +10,14 @@ rancheros-lite-packer-disk1.raw: rancheros-lite-packer-disk1.vmdk
 	VBoxManage clonehd -format RAW rancheros-lite-packer-disk1.vmdk rancheros-lite-packer-disk1.raw
 
 rancheros-lite.iso rancheros-lite-packer-disk1.vmdk:
-	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.6.0/$@
+	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.6.1/$@
 
 # VMDK from a box becomes a huge 40GB raw disk image.
 #rancheros-lite.iso rancheros-lite-packer-disk1.vmdk: rancheros-lite.box
 #	tar xmf rancheros-lite.box $@
 #
 #rancheros-lite.box:
-#	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.5.1/rancheros-lite.box
+#	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.6.1/rancheros-lite.box
 
 insecure_private_key:
 	curl -L https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant \
