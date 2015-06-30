@@ -1,4 +1,4 @@
-all: initrd vmlinuz rancheros-lite.iso rancheros-lite-packer-disk1.raw insecure_private_key exports
+all: initrd vmlinuz rancheros-lite-packer-disk1.raw insecure_private_key exports
 
 initrd vmlinuz: rancheros-lite.iso
 	hdiutil mount rancheros-lite.iso
