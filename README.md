@@ -5,7 +5,7 @@ It has no system-docker containers unlike RancherOS, but it combines with them t
 
 ## Features
 
-- Based on RancherOS Base with kernel v4.0.6 and buildroot/GLIBC
+- Based on RancherOS Base with kernel v4.0.7 and buildroot/GLIBC
 - 40 GB persistent disk
 - Docker v1.7.0
 - Support NFS synced folder

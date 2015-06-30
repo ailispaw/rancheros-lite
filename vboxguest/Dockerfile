@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get -q -y install bc curl xz-utils build-essential p7zip-full && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV KERNEL_VERSION 4.0.6
+ENV KERNEL_VERSION 4.0.7
 COPY linux-${KERNEL_VERSION}.tar.xz /usr/src/
 RUN cd /usr/src && \
     tar xPJf linux-${KERNEL_VERSION}.tar.xz
