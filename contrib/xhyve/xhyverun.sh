@@ -3,7 +3,7 @@
 KERNEL="vmlinuz"
 INITRD="initrd"
 #CMDLINE="earlyprintk=serial console=ttyS0 acpi=off"
-CMDLINE="earlyprintk=serial console=ttyS0 console=tty0 quiet elevator=noop"
+CMDLINE="earlyprintk=serial console=ttyS0 console=tty0 quiet"
 
 ACPI="-A"
 MEM="-m 1G"
