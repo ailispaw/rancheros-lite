@@ -6,7 +6,7 @@ RUN apt-get update && \
 
 WORKDIR /usr/src
 
-ENV KERNEL_VERSION 4.0.7
+ENV KERNEL_VERSION 4.0.8
 COPY os-base.tar.xz /usr/src/
 RUN tar xJf os-base.tar.xz && \
     tar xf dist/kernel/linux-*.tar -C dist/kernel
