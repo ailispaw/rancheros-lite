@@ -42,12 +42,12 @@ Vagrant.configure(2) do |config|
   config.vm.provision "vboxguest", type: "docker" do |docker|
     docker.build_image "/vagrant/vboxguest/", args: "-t rancheros-lite-vbox"
     docker.run "rancheros-lite-vbox", args: "--rm -v /vagrant/iso/assets:/target",
-      auto_assign_name: false, daemonize: false
+      auto_assign_name: false, daemonize: false, restart: false
   end
 
   config.vm.provision "rancheros" , type: "docker" do |docker|
     docker.build_image "/vagrant/iso/", args: "-t rancheros-lite"
     docker.run "rancheros-lite", args: "--rm", cmd: "> /vagrant/rancheros-lite.iso",
-      auto_assign_name: false, daemonize: false
+      auto_assign_name: false, daemonize: false, restart: false
   end
 end
