@@ -7,7 +7,7 @@ VAGRANT := vagrant
 RANCHEROS_BASE_VERSION := 0.4.4
 DOCKER_VERSION         := 1.7.0
 KERNEL_VERSION         := 4.0.8
-VBOX_VERSION           := 4.3.28
+VBOX_VERSION           := 4.3.30
 
 box: $(BOX_NAME)
 
