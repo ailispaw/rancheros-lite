@@ -9,8 +9,17 @@ if [ -n "${CONTAINERS}" ]; then
 fi
 
 CMD=$(basename $0)
+ARGS="$@"
 if [ "${CMD}" == "shutdown" ]; then
   CMD="poweroff"
+  ARGS=""
+  while getopts ":r" opt; do
+    case $opt in
+      r)
+        CMD="reboot"
+        ;;
+    esac
+  done
 fi
 logger -s -p user.info -t "$(basename $0)[$$]" "${CMD}"
-busybox ${CMD} -f $@
+busybox ${CMD} -f ${ARGS}
