@@ -149,6 +149,8 @@ done
 
 /usr/sbin/sshd
 
+/usr/sbin/acpid
+
 if [ -x /var/lib/rancheros-lite/start.sh ]; then
   logger -s -p user.info -t "init[$$]" "Executing custom script"
   /var/lib/rancheros-lite/start.sh || true

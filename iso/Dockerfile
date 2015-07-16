@@ -63,6 +63,11 @@ RUN mkdir -p root/bin && \
 COPY assets/init /usr/src/root/
 COPY assets/respawn /usr/src/root/usr/bin/
 COPY assets/shutdown /usr/src/root/sbin/
+RUN cd /usr/src/root/sbin/ && \
+    for i in halt reboot poweroff; do \
+      rm -f $i; \
+      ln -s shutdown $i; \
+    done
 
 ENV ISO /usr/src/rancheros-lite
 

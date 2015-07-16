@@ -4,9 +4,13 @@ set -e
 CONTAINERS="$(docker ps -q)"
 CONTAINERS=$(echo ${CONTAINERS})
 if [ -n "${CONTAINERS}" ]; then
-  logger -s -p user.info -t "shutdown[$$]" "Stopping containers"
+  logger -s -p user.info -t "$(basename $0)[$$]" "Stopping containers"
   docker stop -t 2 "${CONTAINERS}"
 fi
 
-logger -s -p user.info -t "shutdown[$$]" "Powering off"
-poweroff -f
+CMD=$(basename $0)
+if [ "${CMD}" == "shutdown" ]; then
+  CMD="poweroff"
+fi
+logger -s -p user.info -t "$(basename $0)[$$]" "${CMD}"
+busybox ${CMD} -f $@

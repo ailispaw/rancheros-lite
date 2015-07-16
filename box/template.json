@@ -9,7 +9,7 @@
     "boot_wait": "5s",
     "ssh_username": "rancher",
     "ssh_password": "rancher",
-    "shutdown_command": "sudo poweroff -f",
+    "shutdown_command": "sudo shutdown",
     "guest_additions_mode": "disable",
     "guest_os_type": "Linux26_64",
     "disk_size": 40960,
