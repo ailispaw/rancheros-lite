@@ -22,4 +22,7 @@ if [ "${CMD}" == "shutdown" ]; then
   done
 fi
 logger -s -p user.info -t "$(basename $0)[$$]" "${CMD}"
-busybox ${CMD} -f ${ARGS}
+setsid busybox ${CMD} -f -d 1 ${ARGS} &
+
+#logger -s -p user.info -t "$(basename $0)[$$]" "Terminating SSH connections"
+killall sshd

@@ -68,7 +68,7 @@ $ ssh rancher@192.168.64.2 -i insecure_private_key
 
 ## Shutting Down
 
-Use `halt` command on the console but SSH.
+Use `halt` command.
 
 ```
 [rancher@rancheros-lite ~]$ sudo halt
