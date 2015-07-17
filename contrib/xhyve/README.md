@@ -68,14 +68,16 @@ $ ssh rancher@192.168.64.2 -i insecure_private_key
 
 ## Shutting Down
 
-Use `shutdown` command on the console but SSH.
+Use `halt` command on the console but SSH.
 
 ```
-[rancher@rancheros-lite ~]$ sudo shutdown
-shutdown[314]: Powering off
+[rancher@rancheros-lite ~]$ sudo halt
+halt[278]: halt
 reboot: System halted
 $ 
 ```
+
+And also you can use `shutdown`, `reboot` and `poweroff` as expected.
 
 ## Using Docker
 
@@ -107,6 +109,7 @@ Docker Root Dir: /mnt/vda1/var/lib/docker
 
 ## Resources
 
-- [bootpd -- Mac OS X's built-in DHCP/BOOTP/NetBoot server](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/bootpd.8.html)
-	- /etc/bootpd.plist
-	- /var/db/dhcpd_leases
+- /var/db/dhcpd_leases
+- /Library/Preferences/SystemConfiguration/com.apple.vmnet.plist
+  - Shared_Net_Address
+  - Shared_Net_Mask
