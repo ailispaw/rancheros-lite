@@ -9,7 +9,7 @@ rancheros-lite-packer-disk1.raw: rancheros-lite-packer-disk1.tar.gz
 	tar zxvf rancheros-lite-packer-disk1.tar.gz
 
 rancheros-lite.iso rancheros-lite-packer-disk1.tar.gz:
-	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.7.2/$@
+	curl -OL https://github.com/ailispaw/rancheros-lite/releases/download/v0.7.3/$@
 
 insecure_private_key:
 	curl -L https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant \
