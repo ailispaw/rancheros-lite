@@ -1,5 +1,9 @@
 # RancherOS Lite with xhyve
 
+***DISCONTINUED***
+
+Moved to https://github.com/ailispaw/rancheros-lite-xhyve
+
 ## Requirements
 
 - [xhyve](https://github.com/mist64/xhyve)
