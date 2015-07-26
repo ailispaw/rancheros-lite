@@ -36,7 +36,7 @@
       "(echo t; echo 82; echo w;) | sudo fdisk /dev/sda",
       "sudo mkswap -L RANCHEROS-SWAP /dev/sda2",
       "(echo n; echo p; echo 1; echo ; echo ; echo w;) | sudo fdisk /dev/sda",
-      "sudo mkfs.ext4 -F -L RANCHEROS-DATA /dev/sda1",
+      "sudo mkfs.ext4 -b 4096 -i 4096 -F -L RANCHEROS-DATA /dev/sda1",
 
       "sudo mkdir -p /mnt/sda1",
       "sudo mount -t ext4 /dev/sda1 /mnt/sda1",
