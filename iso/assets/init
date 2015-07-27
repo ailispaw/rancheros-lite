@@ -178,6 +178,9 @@ fi
 if [ -z "$DOCKER_HOST" ]; then
   DOCKER_HOST="-H unix://"
 fi
+if [ -z "$DOCKER_EXTRA_ARGS" ]; then
+  DOCKER_EXTRA_ARGS="--userland-proxy=false"
+fi
 if [ -z "$DOCKER_ULIMITS" ]; then
   DOCKER_ULIMITS=1048576
 fi
