@@ -53,7 +53,7 @@ chmod +x /etc/profile.d/optbin.sh
 mkdir -p /var/db
 touch /var/db/ntp-kod
 
-VERSION=0.8.2
+VERSION=0.8.3
 cat > /etc/os-release << EOF
 NAME="RancherOS Lite"
 VERSION=$VERSION
