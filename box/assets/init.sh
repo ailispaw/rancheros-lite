@@ -18,12 +18,6 @@ KEY
 fi
 chown -R rancher:rancher /home/rancher/.ssh
 
-if [ ! -f /home/rancher/.wgetrc ]; then
-  echo "ca_certificate = /etc/ssl/certs/ca-certificates.crt" > /home/rancher/.wgetrc
-EOF
-fi
-chown rancher:rancher /home/rancher/.wgetrc
-
 # Disable SSH Password Authentication
 if ! grep -q "^PasswordAuthentication no" /etc/ssh/sshd_config; then
   echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
