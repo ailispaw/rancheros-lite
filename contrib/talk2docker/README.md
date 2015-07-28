@@ -9,7 +9,7 @@ $ vagrant box add ailispaw/rancheros-lite
 $ vagrant init -m ailispaw/rancheros-lite
 $ vagrant up
 $ vagrant ssh
-[rancher@rancheros-lite ~]$ wget --no-check-certificate https://raw.githubusercontent.com/ailispaw/rancheros-lite/master/contrib/talk2docker/install.sh
+[rancher@rancheros-lite ~]$ wget https://raw.githubusercontent.com/ailispaw/rancheros-lite/master/contrib/talk2docker/install.sh
 [rancher@rancheros-lite ~]$ chmod +x install.sh
 [rancher@rancheros-lite ~]$ ./install.sh
 [rancher@rancheros-lite ~]$ talk2docker version

@@ -4,7 +4,7 @@ VERSION=1.5.0
 
 cd /tmp
 
-sudo wget --no-check-certificate https://github.com/ailispaw/talk2docker/releases/download/v${VERSION}/talk2docker_${VERSION}_linux_amd64.tar.gz
+sudo wget https://github.com/ailispaw/talk2docker/releases/download/v${VERSION}/talk2docker_${VERSION}_linux_amd64.tar.gz
 
 sudo gzip -d talk2docker_${VERSION}_linux_amd64.tar.gz
 sudo tar xf talk2docker_${VERSION}_linux_amd64.tar
