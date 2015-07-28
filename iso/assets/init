@@ -27,6 +27,7 @@ done
 # Basic Configuration
 mkdir -p /etc/skel
 echo "ca_certificate = /etc/ssl/certs/ca-certificates.crt" > /etc/skel/.wgetrc
+cp /etc/skel/.wgetrc /root
 # from https://github.com/rancherio/os/blob/master/scripts/dockerimages/00-base
 sed -i '/^root/s!/bin/sh!/bin/bash!' /etc/passwd
 echo 'RancherOS Lite: \n \l' > /etc/issue
