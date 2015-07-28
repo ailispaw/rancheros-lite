@@ -70,8 +70,8 @@ test: boot_test
 	$(VAGRANT) provision
 	@echo "-----> docker version"
 	docker version
-	@echo "-----> docker images -t"
-	docker images -t
+	@echo "-----> docker images"
+	docker images
 	@echo "-----> docker ps -a"
 	docker ps -a
 	@echo "-----> nc localhost 8080"
