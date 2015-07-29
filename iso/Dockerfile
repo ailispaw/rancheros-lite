@@ -16,6 +16,8 @@ RUN mkdir -p root && \
 # Taken from boot2docker
 # Remove useless kernel modules, based on unclejack/debian2docker
 RUN cd root/lib/modules && \
+    rm -rf ./*/kernel/build && \
+    rm -rf ./*/kernel/source && \
     rm -rf ./*/kernel/sound/* && \
     rm -rf ./*/kernel/drivers/gpu/* && \
     rm -rf ./*/kernel/drivers/infiniband/* && \
@@ -24,6 +26,7 @@ RUN cd root/lib/modules && \
     rm -rf ./*/kernel/drivers/staging/lustre/* && \
     rm -rf ./*/kernel/drivers/staging/comedi/* && \
     rm -rf ./*/kernel/fs/ocfs2/* && \
+    rm -rf ./*/kernel/fs/reiserfs/* && \
     rm -rf ./*/kernel/net/bluetooth/* && \
     rm -rf ./*/kernel/net/mac80211/* && \
     rm -rf ./*/kernel/net/wireless/*
@@ -43,13 +46,14 @@ RUN tar xf dist/rootfs.tar -C root && \
       var/log \
       var/run \
       var/spool \
-      var/lib/misc && \
+      var/lib/misc \
+      usr/share/locale && \
     mkdir -p run \
       var/cache \
       var/lock \
       var/log \
       var/run \
-      var/spool    
+      var/spool
 
 RUN mkdir -p root/etc/ssl/certs && \
     cp /etc/ssl/certs/ca-certificates.crt root/etc/ssl/certs/
