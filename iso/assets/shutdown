@@ -24,5 +24,7 @@ fi
 logger -s -p user.info -t "$(basename $0)[$$]" "${CMD}"
 setsid busybox ${CMD} -f -d 1 ${ARGS} &
 
+sync;sync;sync
+
 #logger -s -p user.info -t "$(basename $0)[$$]" "Sending SIGTERM to all processes"
 killall5 -o $! -o $(cat /var/run/acpid.pid)
