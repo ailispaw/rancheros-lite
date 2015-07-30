@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+if [ "${USER}" != "root" ]; then
+  echo "$(basename $0): Operation not permitted" >&2
+  exit 1
+fi
+
 CONTAINERS="$(docker ps -q)"
 CONTAINERS=$(echo ${CONTAINERS})
 if [ -n "${CONTAINERS}" ]; then
