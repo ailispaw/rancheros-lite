@@ -21,6 +21,10 @@ mount -t tmpfs none /run
 mount -t sysfs none /sys
 mount -t tmpfs none /sys/fs/cgroup
 
+if grep 'rancheros-lite.debug' /proc/cmdline; then
+  set +e
+fi
+
 for i in blkio cpu cpuacct cpuset devices freezer memory net_cls perf_event; do
   mkdir -p /sys/fs/cgroup/$i
   mount -t cgroup -o $i none /sys/fs/cgroup/$i
