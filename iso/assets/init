@@ -107,8 +107,10 @@ if [ -n "$DEVICE" ]; then
 fi
 DEVICE=$(blkid | grep -e 'LABEL="RANCHEROS-SWAP"' | head -n 1 | sed 's/:.*//')
 if [ -n "$DEVICE" ]; then
-  logger -s -p user.info -t "init[$$]" "Enable SWAP $DEVICE"
-  swapon $DEVICE
+  logger -s -p user.info -t "init[$$]" "Enabling SWAP $DEVICE"
+  if ! swapon $DEVICE; then
+    logger -s -p user.info -t "init[$$]" "Could not make swap on $DEVICE"
+  fi
 fi
 
 if [ -x /var/lib/rancheros-lite/init.sh ]; then
