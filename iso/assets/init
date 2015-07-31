@@ -10,6 +10,8 @@ syslogd
 sleep 1
 logger -s -p user.info -t "init[$$]" "Start init"
 
+trap 'logger -s -p user.info -t "init[$$]" "trapped at line $LINENO"' ERR
+
 mkdir -p /dev/pts
 
 logger -s -p user.info -t "init[$$]" "Mounting system"
