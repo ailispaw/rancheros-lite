@@ -82,7 +82,7 @@ if [ -n "$DEVICE" ]; then
   PARTNAME=$(echo "$DEVICE" | sed 's/.*\///')
   logger -s -p user.info -t "init[$$]" "Mounting HDD /dev/$PARTNAME"
   mkdir -p /mnt/$PARTNAME
-  if ! mount -t ext4 /dev/$PARTNAME /mnt/$PARTNAME; then
+  if (! e2fsck -p /dev/$PARTNAME) || (! mount -t ext4 /dev/$PARTNAME /mnt/$PARTNAME); then
     logger -s -p user.info -t "init[$$]" "Running from memory, this won't be good..."
   else
     rm -rf /var/lib/docker
