@@ -4,12 +4,25 @@ export PATH=/bin:/sbin:/usr/bin:/usr/sbin
 mount proc
 for p in $(cat /proc/cmdline); do
   case $p in
+    rancheros-lite.switch_root)
+      SWITCH_ROOT=true
+      ;;
     rancheros-lite.debug)
       DEBUG=true
       ;;
   esac
 done
 umount proc
+
+if [ -n "${SWITCH_ROOT}" -a -z "$ROOT_SWITCHED" ]; then
+  if mount -t tmpfs -o size=90% tmpfs /mnt; then
+    if tar -C / --exclude=mnt -cf - . | tar -C /mnt/ -xf - ; then
+      mkdir /mnt/mnt
+      export ROOT_SWITCHED=true
+      exec switch_root /mnt /init
+    fi
+  fi
+fi
 
 [ -z "${DEBUG}" ] && set -e
 
@@ -211,7 +224,9 @@ ulimit -n $DOCKER_ULIMITS
 ulimit -u $DOCKER_ULIMITS
 
 # Top secret option...
-export DOCKER_RAMDISK=true
+if [ -z "$ROOT_SWITCHED" ]; then
+  export DOCKER_RAMDISK=true
+fi
 echo -n 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
 
 logger -s -p user.info -t "init[$$]" "Starting Docker -d -D -s $DOCKER_STORAGE -g \"$DOCKER_DIR\" $DOCKER_HOST $DOCKER_EXTRA_ARGS"
