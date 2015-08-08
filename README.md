@@ -1,5 +1,7 @@
 # RancherOS Lite
 
+## **This project has been succeeded by [DockerRoot](https://github.com/ailispaw/docker-root).**
+
 RancherOS Lite is a light version of [RancherOS](https://github.com/rancherio/os) as same as [Only Docker](https://github.com/ibuildthecloud/only-docker).  
 It has no system-docker containers unlike RancherOS, but it combines with them to form normal processes at the top of [RancherOS Base](https://github.com/rancherio/os-base). Therefore, it works like [boot2docker](https://github.com/boot2docker/boot2docker) and it's easy to use [Docker](https://github.com/docker/docker).
 
